@@ -1,0 +1,31 @@
+.card-title{
+    color: $dark-gray;
+    font-size: 1.3rem;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
+  .card-block{
+    max-width: calc(100% - 163px);
+  }
+  .card-text{
+    height: 104px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
+  .card-header{
+    background-color: transparent;
+  }
+  .card-header img{
+    width: 130px;
+    height: 175px;
+    object-fit: cover;
+  }
+  .rate{
+    right: 10px;
+    background-color: $dark-gray;
+    color: #0aec83;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }

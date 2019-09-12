@@ -1,0 +1,33 @@
+$dark-gray:#646464;
+$gray:#666666;
+.f-sm{
+    font-size: 14px;
+}
+p{
+    color: $gray;
+}
+.nav-pills .nav-link.active{
+    border-bottom: 3px solid $primary;
+}
+a.nav-link{
+    color:$dark-gray;
+}
+.pagination a{
+    color : #939191;
+}
+.pagination .active a{
+    color : #00c3d1;
+}
+.loading{
+    position: absolute;
+    left:  calc(50% - 55px);
+    top: calc(50% - 55px);
+}
+.centeredDiv{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #e6e6e6, $alpha: .4);
+    position: fixed;
+    left: 0;
+    top: 0
+}
