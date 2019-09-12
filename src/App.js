@@ -1,6 +1,5 @@
 import React , { Component } from 'react';
-import'../node_modules/bootstrap/dist/css/bootstrap.css';
-
+import'./assets/style/bootstrap.css';
 import './App.scss';
 import Header from './components/Header';
 import Tabs from './components/Tabs';

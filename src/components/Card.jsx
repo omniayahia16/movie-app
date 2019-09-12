@@ -27,16 +27,20 @@ export default class Card extends Component {
           totalResults:0,
           currentPage:1,
           currentMovie:null,
-          loading:false ,
-          movieCategory:"popular"
+          loading:false
         }
     }
-    componentDidMount(){       
-        this.fetchApi(this.state.movieCategory);
+    componentDidUpdate(prevProps) {
+        if(prevProps.movieCategory !== this.props.movieCategory) {
+            this.fetchApi();
+        }
+      }
+    componentDidMount(){   
+        this.fetchApi();
     }
-    fetchApi(movieCategory) {
+    fetchApi() {
         var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = `https://api.themoviedb.org/3/movie/${movieCategory}/?page=1&language=en-US&api_key=f7c12e4fd4d034e024e975fbf3273205`
+        targetUrl = `https://api.themoviedb.org/3/movie/${this.props.movieCategory}/?page=1&language=en-US&api_key=f7c12e4fd4d034e024e975fbf3273205`
         fetch(proxyUrl + targetUrl)
         .then(res => res.json())
         .then(json => {
@@ -57,8 +61,9 @@ export default class Card extends Component {
 
     nextPage = (pageNumber) => {
         setTimeout(() => { 
+            debugger;
             var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-            targetUrl = `https://api.themoviedb.org/3/movie/popular/?page=${pageNumber}&language=en-US&api_key=f7c12e4fd4d034e024e975fbf3273205`
+            targetUrl = `https://api.themoviedb.org/3/movie/${this.props.movieCategory}/?page=${pageNumber}&language=en-US&api_key=f7c12e4fd4d034e024e975fbf3273205`
             fetch(proxyUrl + targetUrl)
             .then(res => res.json())
             .then(json => {
@@ -66,7 +71,7 @@ export default class Card extends Component {
                     loading:false,
                     isLoaded:true,
                     items:json.results,
-                    currentPage:pageNumber,
+                    currentPage:pageNumber
                 })
             });
         }, 200);  
@@ -90,6 +95,10 @@ export default class Card extends Component {
                                 <p className="card-text f-sm">{item.overview}</p>
                                 <Link to={'/movie/'+item.id}>More Info</Link>    
                             </div>
+                            <div className="position-absolute rate text-center pt-1"> {item.vote_average}</div>
+                            <Track>
+                                <Thumb movieRate={item.vote_average*10}/>
+                            </Track> 
                             <div className="position-absolute rate text-center pt-1"> {item.vote_average}</div>                                                   
                         </div>
                     </div>                      
