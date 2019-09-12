@@ -95,11 +95,10 @@ export default class Card extends Component {
                                 <p className="card-text f-sm">{item.overview}</p>
                                 <Link to={'/movie/'+item.id}>More Info</Link>    
                             </div>
-                            <div className="position-absolute rate text-center pt-1"> {item.vote_average}</div>
+                            <div className="position-absolute rate text-center pt-1"> {item.vote_average}</div>                        
                             <Track>
                                 <Thumb movieRate={item.vote_average*10}/>
-                            </Track> 
-                            <div className="position-absolute rate text-center pt-1"> {item.vote_average}</div>                                                   
+                            </Track>
                         </div>
                     </div>                      
                 ))} 
