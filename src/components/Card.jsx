@@ -45,10 +45,7 @@ export default class Card extends Component {
         .then(res => res.json())
         .then(json => {
             this.setState({
-                loading:false,
-                isLoaded:true,
                 items:json.results,
-                totalResults:json.total_results,
             })
         });
     };
@@ -60,21 +57,18 @@ export default class Card extends Component {
 
 
     nextPage = (pageNumber) => {
-        setTimeout(() => { 
-            debugger;
-            var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-            targetUrl = `https://api.themoviedb.org/3/movie/${this.props.movieCategory}/?page=${pageNumber}&language=en-US&api_key=f7c12e4fd4d034e024e975fbf3273205`
-            fetch(proxyUrl + targetUrl)
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    loading:false,
-                    isLoaded:true,
-                    items:json.results,
-                    currentPage:pageNumber
-                })
-            });
-        }, 200);  
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+        targetUrl = `https://api.themoviedb.org/3/movie/${this.props.movieCategory}/?page=${pageNumber}&language=en-US&api_key=f7c12e4fd4d034e024e975fbf3273205`
+        fetch(proxyUrl + targetUrl)
+        .then(res => res.json())
+        .then(json => {
+            this.setState({
+                loading:false,
+                isLoaded:true,
+                items:json.results,
+                currentPage:pageNumber
+            })
+        });
     }
     // "pagination" to get another page from the api  
 
@@ -85,7 +79,7 @@ export default class Card extends Component {
         <div className="container">
             <div className="row">
                 {items.map(item =>(
-                    <div className="col-md-6 mb-4" key={item.id}>
+                    <div className="col-md-6 mb-4">
                         <div className="card flex-row flex-wrap py-3 px-2">
                             <div className="card-header border-0 p-0">
                                 <img src={"https://image.tmdb.org/t/p/w500/" + item.poster_path} alt=""/>
@@ -93,7 +87,6 @@ export default class Card extends Component {
                             <div className="card-block px-3">
                                 <h4 className="card-title">{item.title}</h4>
                                 <p className="card-text f-sm">{item.overview}</p>
-                                <Link to={'/movie/'+item.id}>More Info</Link>    
                             </div>
                             <div className="position-absolute rate text-center pt-1"> {item.vote_average}</div>                        
                             <Track>
